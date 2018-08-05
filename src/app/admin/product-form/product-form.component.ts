@@ -12,7 +12,7 @@ import { UUID } from 'angular2-uuid';
 export class ProductFormComponent implements OnInit {
 
   categories$;
-  product = {};
+  product = { title : '', price : '', category : '', imageUrl : ''};
   id;
 
   constructor(private router : Router, 
@@ -23,7 +23,14 @@ export class ProductFormComponent implements OnInit {
 
     this.id = this.route.snapshot.paramMap.get('id');
     if(this.id) 
-    this.productService.get(this.id).subscribe(p => this.product = p[0]);
+    this.productService.get(this.id).subscribe(p => {
+      this.product = {
+        title : p[0]['title'],
+        price : p[0]['price'],
+        category : p[0]['category'],
+        imageUrl : p[0]['imageUrl']
+      }
+    });
   }
 
   ngOnInit() {

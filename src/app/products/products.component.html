@@ -9,8 +9,8 @@
               <div class="col">
                   <product-card [product]="product"></product-card>
               </div>
+              <div *ngIf="(i + 1) % 2 === 0"  class="w-100"></div>
           </ng-container>
-          <div *ngIf="(i + 1) % 2 === 0"  class="w-100"></div>
         </div>    
   </div>
 </div>
