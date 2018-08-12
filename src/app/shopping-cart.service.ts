@@ -3,7 +3,7 @@ import { Product } from './models/product';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UUID } from 'angular2-uuid';
 import { ShoppingCart } from './models/shopping-cart';
-import { take } from '../../node_modules/rxjs/operators';
+import { take, map } from '../../node_modules/rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,8 @@ export class ShoppingCartService {
 
   async getCart(){
     let cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId);
+    return this.db.object('/shopping-carts/' + cartId).valueChanges()
+    .pipe(map(x => new ShoppingCart(x['items'])));
   }
 
   getItem(cartId : string, productId : string){
