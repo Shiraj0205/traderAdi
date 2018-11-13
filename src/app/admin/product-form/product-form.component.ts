@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from 'shared/services/category.service';
-import { ProductService } from 'shared/services/product.service';
+import { CategoryService } from '../../category.service';
+import { ProductService } from '../../product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UUID } from 'angular2-uuid';
 
@@ -12,7 +12,7 @@ import { UUID } from 'angular2-uuid';
 export class ProductFormComponent implements OnInit {
 
   categories$;
-  product = { title : '', model : '', price : '', category : '', imageUrl : '', description : ''};
+  product = { title : '', price : '', category : '', imageUrl : ''};
   id;
 
   constructor(private router : Router, 
@@ -26,11 +26,9 @@ export class ProductFormComponent implements OnInit {
     this.productService.get(this.id).subscribe(p => {
       this.product = {
         title : p[0]['title'],
-        model : p[0]['model'],
         price : p[0]['price'],
         category : p[0]['category'],
-        imageUrl : p[0]['imageUrl'],
-        description : p[0]['description']
+        imageUrl : p[0]['imageUrl']
       }
     });
   }

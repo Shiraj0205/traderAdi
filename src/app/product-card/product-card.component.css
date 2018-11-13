@@ -1,0 +1,12 @@
+.card-footer{
+    padding: 0;
+}
+
+.card{
+    margin-bottom: 30px;
+}
+
+.img-responsive{
+    height: 230px;
+    width: 100%;
+}
